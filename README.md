@@ -1,5 +1,4 @@
 # eksctlk8
-# eksctlk8
 eksctl installation
 =====================
 step(1): launch ec2 instance
