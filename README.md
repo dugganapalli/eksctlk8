@@ -144,3 +144,83 @@ Docker :maintain all containers manullay
 K8: mainatain by k8
 
 
+k8 architecture
+==============
+1)we interact with master only and master interact with node
+2)kubectl(client)
+3)kubeconfig: (homedirectory/.kube/config)
+  master IP
+  master port
+  tls creat
+  permission
+4)API SERVER:=authenticator+autorization(responsible to connect with clients)
+5)shedular= select the nodes for pod deployments(schedule pods to node)
+6)ETCD:database (keyvalue pair database)(total information how may nodes ,pods,etc..,)
+7)controller(pod/node/service/autosclar...etc..)
+8)kubelet =agent between master and worker
+9)kubeproxy= sends the traffic from outside  to pods
+10)Docker
+
+
+master                                               worker/node/minion
+--------------                                       --------------------  
+API SERVER                                           to run pods/apps
+schedular                                            kubelet
+etcd                                                 kubeproxy  
+controller     
+
+
+Deployment of image(objects)
+----------------------------
+pod
+deployment=======mostly used
+replication set/replication controller(old)
+daemonset
+statefulset
+
+networking(objects)----to access pods to outside
+-------------------
+
+service(to group pods and expose to outside) will act as a load balancer and  entrypoint to access pods
+                            -------------                   -------------
+ingress
+
+storage(objects)
+------------------
+storageclass(like ebs volume/disc ))
+persistant volume claim----attaches/mounts to deployment objects
+
+Secrets(object)/Envionment Variables
+------------------------------------
+ConfigMap(plain)
+Secret (encrypt)
+
+
+
+yaml file(hello.yaml)
+----------
+apiversion: v1
+kind: deployment
+metadata: 
+  name: hello-world
+  lables: 
+    name:
+    value:
+spec:
+  replicas: 1
+  strategy: rollout
+  containers:
+    image: ecr-repo/image:1
+    name:
+    port:
+    volumes:
+    env:
+    secrets:
+
+kubectl apply -f hello.yaml
+
+
+1)helloworld(deployment)----internally wiil create pod --- we ctreate service to access out side---helloworld
+
+
+
