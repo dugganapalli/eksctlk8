@@ -221,3 +221,24 @@ kubectl apply -f hello.yaml
 
 1)helloworld(deployment)----internally wiil create pod --- we ctreate service to access out side---helloworld
 
+
+
+to check schedular running or not-
+=================================
+kubectl get po -n kube-system
+
+namespace-
+-------------
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: <insert-namespace-name-here>
+
+command:
+kubectl create ns web
+
+kubectl get ns web -o yaml
+
+to check all pods in all namespace
+---------------------------------
+kubectl get po --all-namespaces
