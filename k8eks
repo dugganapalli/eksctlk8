@@ -60,6 +60,7 @@ eksctl create cluster \
 
 
 
+eksctl delete cluster --name=prod-cluster
 
 
 
@@ -91,7 +92,7 @@ kubectl version --short --client
 eksctl create cluster \
 --name k8-cluster \
 --version 1.18 \
---region ap-south-1 \
+--region us-east-1 \
 --nodegroup-name linux \
 --nodes 3 \
 --nodes-min 2 \
@@ -119,6 +120,10 @@ kubectl get rc
 kubectl get rs
 kubectl get daemonset
 kubectl get statefulset
+
+
+To create a namespace, use kubectl create command.
+Syntax: kubectl create namespace <namespace name>
 
 
 orchestration
@@ -242,3 +247,29 @@ kubectl get ns web -o yaml
 to check all pods in all namespace
 ---------------------------------
 kubectl get po --all-namespaces
+
+
+
+apiversion: v1
+kind: pod
+metadata:
+spec:
+  containers:
+    image: 614899457331.dkr.ecr.us-east-1.amazonaws.com/test:latest
+    name: test
+  ports:
+   containerport:
+  limits:
+    memory: 256mb
+    cpu: 0.5
+
+pod health check
+====================
+liveness probe: if health fails it will restarts 
+redayness probe: if health check fail it will stop traffic9
+
+
+
+Task:
+--------
+

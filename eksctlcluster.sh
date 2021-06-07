@@ -23,15 +23,18 @@ kubectl version --short --client
 
 #===============================================
 eksctl create cluster \
---name k8-cluster \
+--name test-cluster \
 --version 1.18 \
---region ap-south-1 \
+--region ap-southeast-1 \
 --nodegroup-name linux \
 --nodes 3 \
 --nodes-min 2 \
 --nodes-max 3 \
 --with-oidc \
 --ssh-access \
---ssh-public-key ansible \
+--ssh-public-key prod \
 --managed
 
+
+ec2 create ---attach iam
+aws auth file
